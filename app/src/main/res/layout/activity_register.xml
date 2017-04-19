@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.firebaseblog.RegisterActivity">
+
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Your Name...."
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="-1dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/emailField" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email...."
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="42dp"
+        android:layout_below="@+id/nameField"
+        android:layout_alignStart="@+id/passwordField" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password..."
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="85dp"
+        android:layout_below="@+id/emailField"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/passwordField"
+        android:layout_below="@+id/passwordField"
+        android:layout_marginStart="130dp"
+        android:text="Sign Up"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="128dp" />
+</RelativeLayout>
