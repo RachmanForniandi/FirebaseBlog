@@ -1,5 +1,6 @@
 package com.example.android.firebaseblog;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,8 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     private EditText mLoginEmailField;
     private EditText mLoginPasswordField;
-    private Button mLoginButton;
+    private Button mLoginBtn;
     private FirebaseAuth mAuth;
+
+    private ProgressDialog mProgress;
     private DatabaseReference mDatabase;
 
     @Override
@@ -35,18 +38,19 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        mProgress = new ProgressDialog(this);
+
         mLoginEmailField = (EditText)findViewById (R.id.loginEmailField);
         mLoginPasswordField = (EditText)findViewById(R.id.passwordField);
 
-        mLoginButton = (Button)findViewById(R.id.loginBtn);
+        mLoginBtn = (Button)findViewById(R.id.loginBtn);
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkLogin();
             }
         });
-
 
     }
 
@@ -55,10 +59,15 @@ public class LoginActivity extends AppCompatActivity {
         String password = mLoginPasswordField.getText().toString().trim();
 
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+            mProgress.setMessage("Checking Login ...");
+            mProgress.show();
+
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                    if(task.isSuccessful()){
+                       mProgress.dismiss();
+
                        checkUserExist();
                    }else {
 
